@@ -3,7 +3,7 @@
 
 long long discriminant(long long a, long long b, long long c); // 判別式
 
-int main(void)
+int main()
 {
     long long N, K;
     int maxT = 0;
@@ -21,7 +21,7 @@ int main(void)
         if ( d >= 0 ) // 判別式が負の場合、木ははじめからKを越えている状態
         {
             double t;
-            t = (-b + sqrt(d)) / (2*a);
+            t = (-b + std::sqrt(d)) / (2*a);
             
             if ( maxT < t )
             {
