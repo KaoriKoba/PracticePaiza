@@ -34,7 +34,7 @@ public:
 
 	static const DirUtil& Get()
 	{
-		static DirUtil util; // static‚ğ‚Â‚¯‚é‚±‚Æ‚Å‘½d‚ÉÀ‘Ì‰»‚µ‚È‚¢
+		static DirUtil util; // staticã‚’ã¤ã‘ã‚‹ã“ã¨ã§å¤šé‡ã«å®Ÿä½“åŒ–ã—ãªã„
 		return util;
 	}
 
@@ -58,7 +58,7 @@ public:
 
 private:
 	std::array<Caps, 4> caps_ = {
-		Caps('N', 0, -1), // ‰E‚ª³A‰º‚ª³
+		Caps('N', 0, -1), // å³ãŒæ­£ã€ä¸‹ãŒæ­£
 		Caps('E', 1, 0),
 		Caps('S', 0, 1),
 		Caps('W', -1, 0) };
@@ -109,24 +109,24 @@ int main()
 	int rotateFlag = 0;
 	uint8_t cntRotFlag = 0;
 	int add = 1;
-
 	for (int i = 0; i < N; i++)
 	{
 		if (i == rotateFlag)
 		{
 			snake.rotateAng('R');
+			
+			rotateFlag += add;// rotateå®Ÿè¡Œæ¡ä»¶æ›´æ–°
 
-			if ((i != 0) && ((cntRotFlag & 0b1) == 0)) //‹ô”‰ñ‚Ì‚İadd‚ğXV
+			if ((cntRotFlag & 0b1) == 1) //å¥‡æ•°å›ã®ã¿addã‚’æ›´æ–°
 			{
 				add++;
 			}
-			rotateFlag += add;
+			
 			cntRotFlag++;
 		}
 
 		snake.moveForward();
 	}
-
 	std::cout << snake.getCrrPos().x << ' ' << snake.getCrrPos().y;
 	return 0;
 }
