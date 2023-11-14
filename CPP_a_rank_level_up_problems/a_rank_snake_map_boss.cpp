@@ -20,10 +20,10 @@ public:
 	~Map() = default;
 
 private:
-	std::vector<std::string> lines;
+	std::vector<std::string> lines_;
 
 public:
-	void Add(const std::string& line) { lines.push_back(line); }
+	void Add(const std::string& line) { lines_.push_back(line); }
 	char Get(int x, int y) const;
 	char Get(const Point& p) const;
 	int Modify(int x, int y, char newdata);
@@ -37,9 +37,9 @@ protected:
 
 bool Map::CheckRange(int x, int y) const
 {
-	if (0 <= y && lines.size() > y)
+	if (0 <= y && lines_.size() > y)
 	{
-		if (0 <= x && lines[y].length() > x)
+		if (0 <= x && lines_[y].length() > x)
 		{
 			return true;
 		}
@@ -57,7 +57,7 @@ char Map::Get(int x, int y) const
 {
 	if (CheckRange(x, y))
 	{
-		return lines[y][x];
+		return lines_[y][x];
 	}
 
 	return MAP_NO_DATA;
@@ -72,7 +72,7 @@ int Map::Modify(int x, int y, char newdata)
 {
 	if (CheckRange(x, y))
 	{
-		lines[y][x] = newdata;
+		lines_[y][x] = newdata;
 		return 0;
 	}
 
@@ -86,7 +86,7 @@ int Map::Modify(const Point& p, char newdata)
 
 void Map::Print()
 {
-	for (std::string l : lines)
+	for (std::string l : lines_)
 	{
 		std::cout << l << std::endl;
 	}
